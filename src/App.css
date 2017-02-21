@@ -1,0 +1,15 @@
+.top {
+    height: 100%;
+    vertical-align: middle;
+    display: table;
+    margin: auto;
+    
+}
+
+#login-page{
+	margin-top: 130px;}
+.login-form{width:350px;}
+.login-form-text{text-transform:uppercase;letter-spacing:2px;font-size:1rem;font-weight:bold;}
+
+.login-text{margin-top:-6px;margin-left:-6px !important}
+.input-field label{position:absolute;top:-14px;font-size:0.8rem}
