@@ -18,18 +18,21 @@ class AdminDashboard extends Component {
               <a href="#!email"><span className="blue-text email">jdandturk@gmail.com</span></a>
             </div>
           </li>
-          <li className="hoverable"><Link to="/viewEnquiry"><i className="material-icons">mail_outline</i>View Enquiry</Link></li>
+          <li className="hoverable"><Link to="/viewFeedback"><i className="material-icons">mail_outline</i>View FeedBack</Link></li>
           <li className="hoverable"><Link to="/addPath"><i className="material-icons">library_books</i>Add Path</Link></li>
           <li className="hoverable"><Link to="/sessionRequest"><i className="material-icons">new_releases</i>Session Request</Link></li>
           <li className="hoverable"><Link to="/mentorRequest"><i className="material-icons">new_releases</i>Mentor Request</Link></li>
           <li className="hoverable"><Link to="/ambassadorTask"><i className="material-icons">work</i>Ambassador Task</Link></li>
           <li className="hoverable"><Link to="/browseUsers"><i className="material-icons">search</i>Browse Users</Link></li>
           <li className="hoverable"><Link to="/addUser"><i className="material-icons">account_box</i>Add User</Link></li>
+          <li className="hoverable"><Link to="/viewPath"><i className="material-icons">library_books</i>View Path</Link></li>
+          <li className="hoverable"><Link to=""><i className="material-icons">library_books</i>View Course</Link></li>
+          <li className="hoverable"><Link to=""><i className="material-icons">library_books</i>View Session</Link></li>
+
 
           <li>
             <div className="divider"></div>
           </li>
-          <li><a className="subheader">Subheader</a></li>
           <li className="hoverable"><a className="waves-effect" href="#!"><i className="material-icons prefix">power_settings_new</i>Logout</a></li>
         </ul>
         {this.props.children}

@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import  'materialize-css/bin/materialize.css';
 //window.jQuery=require('jquery');
 //require('materialize-css/bin/materialize.js');
+import {browserHistory} from "react-router";
 
 
 
@@ -13,6 +14,7 @@ class AddPath extends React.Component {
         this.state = {
             value: ''
         };
+        this.pathSubmit = this.pathSubmit.bind(this);
     }
     componentDidMount() {
         window.jQuery('ul.tabs').tabs();
@@ -21,6 +23,29 @@ class AddPath extends React.Component {
     }
     handleChange(event) {
         this.setState({ value: event.target.value });
+    }
+    pathSubmit(e) {
+        e.preventDefault();
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        const params = {
+            'title': document.getElementById('path')[0].value,
+            'description': document.getElementById('path')[1].value,
+            'url':document.getElementById('path')[3].value
+        }
+        const searchParams = Object.keys(params).map((key) => {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        }).join('&');
+        fetch("https://0.0.0.0:8000/addPath", {
+            method: "POST",
+            body: searchParams,
+            headers: headers
+        }).then(result => { if (result.ok) { return result.text(); } if(result.status===409) { return result.text()} })
+            .then(status => { window.Materialize.toast(status,3000); })
+            .catch(function (error) {
+                console.log('There has been a problem with your fetch operation: ' + error);
+            });
     }
     render() {
         return (
@@ -34,7 +59,7 @@ class AddPath extends React.Component {
                 </div>
                 <div id="test-swipe-1" className="col s12 offset-m3">
                     <div className="row">
-                        <form className="col s6 z-depth-4 card-panel ">
+                        <form className="col s6 z-depth-4 card-panel " id="path" action="" onSubmit={this.pathSubmit}>
                             <div className="row">
                                 <div className="input-field col s12">
                                     <i className="material-icons prefix">title</i>
@@ -72,7 +97,7 @@ class AddPath extends React.Component {
                 </div>
                 <div id="test-swipe-2" className="col s12 offset-m3">
                     <div className="row">
-                        <form className="col s6 z-depth-4 card-panel ">
+                        <form className="col s6 z-depth-4 card-panel " id="course" action="" onSubmit={this.courseSubmit}>
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">title</i>
@@ -118,7 +143,7 @@ class AddPath extends React.Component {
                                     <i className="material-icons prefix">chrome_reader_mode</i>
                                     <select value={this.state.value} onChange={this.handleChange}>
                                         <option value="">Choose Level</option>
-                                        <option value="Big Data">Begginner</option>
+                                        <option value="Big Data">Beginner</option>
                                         <option value="Machine Learning">Intermediate</option>
                                         <option value="Neural Networks">Expert</option>
                                     </select>
@@ -145,7 +170,7 @@ class AddPath extends React.Component {
                 </div>
                 <div id="test-swipe-3" className="col s12 offset-m3">
                     <div className="row">
-                        <form className="col s6 z-depth-4 card-panel ">
+                        <form className="col s6 z-depth-4 card-panel " id="session">
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
@@ -164,18 +189,6 @@ class AddPath extends React.Component {
                                         <option value="course2">Course 2</option>
                                         <option value="course3">Course 3</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">perm_identity</i>
-                                    <input id="mentor_id" type="text" className="validate" />
-                                    <label htmlFor="mentor_id">Mentor Id</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">work</i>
-                                    <input id="task_id" type="text" className="validate" />
-                                    <label htmlFor="task_id">Task Id</label>
                                 </div>
                             </div>
                             <div className="row">
@@ -200,6 +213,13 @@ class AddPath extends React.Component {
                                     <i className="material-icons prefix">info</i>
                                     <input id="session_status" type="text" className="validate datepicker" />
                                     <label htmlFor="session_status">Session Status</label>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <i className="material-icons prefix">perm_identity</i>
+                                    <input id="mentor_id" type="text" className="validate" />
+                                    <label htmlFor="mentor_id">Mentor Id</label>
                                 </div>
                             </div>
                             <div className="row">
