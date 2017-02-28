@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import  'materialize-css/bin/materialize.css';
 //window.jQuery=require('jquery');
 //require('materialize-css/bin/materialize.js');
-import {browserHistory} from "react-router";
+import { browserHistory } from "react-router";
 
 
 
@@ -12,11 +12,13 @@ class AddPath extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            options: []
         };
         this.pathSubmit = this.pathSubmit.bind(this);
     }
     componentDidMount() {
+        var that = this;
         window.jQuery('ul.tabs').tabs();
         window.jQuery('select').material_select();
 
@@ -26,13 +28,14 @@ class AddPath extends React.Component {
     }
     pathSubmit(e) {
         e.preventDefault();
+        var that = this;
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         const params = {
             'title': document.getElementById('path')[0].value,
             'description': document.getElementById('path')[1].value,
-            'url':document.getElementById('path')[3].value
+            'url': document.getElementById('path')[3].value
         }
         const searchParams = Object.keys(params).map((key) => {
             return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
@@ -41,25 +44,31 @@ class AddPath extends React.Component {
             method: "POST",
             body: searchParams,
             headers: headers
-        }).then(result => { if (result.ok) { return result.text(); } if(result.status===409) { return result.text()} })
-            .then(status => { window.Materialize.toast(status,3000); })
+        }).then(result => { if (result.ok) { return result.text(); } if (result.status === 409) { return result.text() } })
+            .then(status => {
+                window.Materialize.toast(status, 3000);
+                document.getElementById('path')[0].value = "";
+                document.getElementById('path')[1].value = "";
+                document.getElementById('path')[3].value = "";
+                that.forceUpdate();
+                console.log("hello");
+            })
             .catch(function (error) {
                 console.log('There has been a problem with your fetch operation: ' + error);
             });
+
     }
     render() {
         return (
             <div className="row">
-                <div className="col s12 m8 offset-m3">
-                    <ul id="tabs-swipe-demo" className="tabs">
-                        <li className="tab col s3"><a className="active" href="#test-swipe-1"><b>Add Path</b></a></li>
-                        <li className="tab col s3"><a href="#test-swipe-2"><b>Add Course</b></a></li>
-                        <li className="tab col s3"><a href="#test-swipe-3"><b>Add session</b></a></li>
-                    </ul>
-                </div>
-                <div id="test-swipe-1" className="col s12 offset-m3">
+                <div className="col s12 offset-m3">
                     <div className="row">
                         <form className="col s6 z-depth-4 card-panel " id="path" action="" onSubmit={this.pathSubmit}>
+                        <div className="row">
+                                <div className="input-field col s12 center">
+                                    <p className="center login-form-text">Add Path</p>
+                                </div>
+                            </div>
                             <div className="row">
                                 <div className="input-field col s12">
                                     <i className="material-icons prefix">title</i>
@@ -95,146 +104,8 @@ class AddPath extends React.Component {
                         </form>
                     </div>
                 </div>
-                <div id="test-swipe-2" className="col s12 offset-m3">
-                    <div className="row">
-                        <form className="col s6 z-depth-4 card-panel " id="course" action="" onSubmit={this.courseSubmit}>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">title</i>
-                                    <input id="course_title" type="text" className="validate" />
-                                    <label htmlFor="course_title">CourseTitle</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
-                                        <option value="">Choose Path</option>
-                                        <option value="Big Data">Big Data</option>
-                                        <option value="Machine Learning">Machine Learning</option>
-                                        <option value="Neural Networks">Neural Networks</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s12">
-                                    <i className="material-icons prefix">description</i>
-                                    <textarea id="course_description" className="materialize-textarea validate"></textarea>
-                                    <label htmlFor="course_description">Description</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s4">
-                                    <i className="material-icons prefix">timelapse</i>
-                                    <input id="course_duration" type="text" className="validate" />
-                                    <label htmlFor="course_duration">Duration in number of sessions</label>
-                                </div>
-                                <div className="input-field col s4">
-                                    <i className="material-icons prefix">attach_money</i>
-                                    <input id="course_fee" type="text" className="validate" />
-                                    <label htmlFor="course_fee">Fees for the Course</label>
-                                </div>
-                                <div className="input-field col s4">
-                                    <i className="material-icons prefix">perm_identity</i>
-                                    <input id="course_author" type="text" className="validate" />
-                                    <label htmlFor="course_author">Course Author</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
-                                        <option value="">Choose Level</option>
-                                        <option value="Big Data">Beginner</option>
-                                        <option value="Machine Learning">Intermediate</option>
-                                        <option value="Neural Networks">Expert</option>
-                                    </select>
-                                </div>
-                                <div className="file-field input-field col s6">
-                                    <div className="btn red lighten-2">
-                                        <span><i className="material-icons">file_upload</i></span>
-                                        <input type="file" accept=".png, .jpg, .jpeg" />
-                                    </div>
-                                    <div className="file-path-wrapper">
-                                        <input className="file-path validate" type="text" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col s3 offset-m8">
-                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add Path
-                                    <i className="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div id="test-swipe-3" className="col s12 offset-m3">
-                    <div className="row">
-                        <form className="col s6 z-depth-4 card-panel " id="session">
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
-                                        <option value="">Choose Path</option>
-                                        <option value="Big Data">Big Data</option>
-                                        <option value="Machine Learning">Machine Learning</option>
-                                        <option value="Neural Networks">Neural Networks</option>
-                                    </select>
-                                </div>
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
-                                        <option value="">Choose Course</option>
-                                        <option value="course1">Course 1</option>
-                                        <option value="course2">Course 2</option>
-                                        <option value="course3">Course 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">date_range</i>
-                                    <input id="start_date" type="date" className="validate datepicker" />
-                                    <label htmlFor="start_date">Start Date</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">date_range</i>
-                                    <input id="end_date" type="date" className="validate datepicker" />
-                                    <label htmlFor="end_date">End Date</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">room</i>
-                                    <input id="room_id" type="text" className="validate datepicker" />
-                                    <label htmlFor="room_id">Room Id</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">info</i>
-                                    <input id="session_status" type="text" className="validate datepicker" />
-                                    <label htmlFor="session_status">Session Status</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s6">
-                                    <i className="material-icons prefix">perm_identity</i>
-                                    <input id="mentor_id" type="text" className="validate" />
-                                    <label htmlFor="mentor_id">Mentor Id</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col s3 offset-m8">
-                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add Path
-                                    <i className="material-icons right">send</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
             </div>
-
-
         );
     }
 }

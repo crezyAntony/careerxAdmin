@@ -3,24 +3,51 @@ import '../App.css';
 class AddUser extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: ''
-        };
+        this.userSubmit = this.userSubmit.bind(this);
     }
     componentDidMount() {
+        var that = this;
         window.jQuery('ul.tabs').tabs();
         window.jQuery('select').material_select();
-
     }
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    userSubmit(e) {
+        e.preventDefault();
+        var that = this;
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        const params = {
+            'fname': document.getElementById('user')[0].value,
+            'lname': document.getElementById('user')[1].value,
+            'email': document.getElementById('user')[2].value,
+            'role': document.getElementById('user')[3].value
+        }
+        const searchParams = Object.keys(params).map((key) => {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        }).join('&');
+        fetch("https://0.0.0.0:8000/addUser", {
+            method: "POST",
+            body: searchParams,
+            headers: headers
+        }).then(result => { if (result.ok) { return result.text(); } if (result.status === 409) { return result.text() } })
+            .then(status => {
+                window.Materialize.toast(status, 3000);
+                document.getElementById('user')[0].value = "";
+                document.getElementById('user')[1].value = "";
+                document.getElementById('user')[2].value = "";
+                document.getElementById('user')[3].value = "";
+            })
+            .catch(function (error) {
+                console.log('There has been a problem with your fetch operation: ' + error);
+            });
+
     }
     render() {
         return (
             <div className="top">
                 <div id="addUser-page" className="row">
                     <div className="col s12 z-depth-4 card-panel">
-                        <form className="addUser-form">
+                        <form className="addUser-form" id="user" action="" onSubmit={this.userSubmit}>
                             <div className="row">
                                 <div className="input-field col s12 center">
                                     <p className="center login-form-text">Add User</p>
@@ -34,8 +61,8 @@ class AddUser extends React.Component {
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">account_circle</i>
-                                    <input id="usersecondname" type="text" />
-                                    <label>Second name</label>
+                                    <input id="userlastname" type="text" />
+                                    <label>Last name</label>
                                 </div>
                             </div>
                             <div className="row">
@@ -46,7 +73,7 @@ class AddUser extends React.Component {
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">accessibility</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
+                                    <select name="role">
                                         <option value="">Choose User Role</option>
                                         <option value="ambassador">Ambassador</option>
                                         <option value="counsellor">Counsellor</option>
@@ -56,7 +83,7 @@ class AddUser extends React.Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col s12 ">
-                                    <a href="#" className="btn waves-effect waves-light col s12 hoverable">Add User</a>
+                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add User</button>
                                 </div>
                             </div>
                         </form>

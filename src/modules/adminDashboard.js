@@ -20,6 +20,8 @@ class AdminDashboard extends Component {
           </li>
           <li className="hoverable"><Link to="/viewFeedback"><i className="material-icons">mail_outline</i>View FeedBack</Link></li>
           <li className="hoverable"><Link to="/addPath"><i className="material-icons">library_books</i>Add Path</Link></li>
+          <li className="hoverable"><Link to="/addCourse"><i className="material-icons">library_books</i>Add Course</Link></li>
+          <li className="hoverable"><Link to="/addSession"><i className="material-icons">library_books</i>Add Session</Link></li>
           <li className="hoverable"><Link to="/sessionRequest"><i className="material-icons">new_releases</i>Session Request</Link></li>
           <li className="hoverable"><Link to="/mentorRequest"><i className="material-icons">new_releases</i>Mentor Request</Link></li>
           <li className="hoverable"><Link to="/ambassadorTask"><i className="material-icons">work</i>Ambassador Task</Link></li>

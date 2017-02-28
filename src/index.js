@@ -12,12 +12,16 @@ import SessionRequest from './modules/sessionRequest';
 import MentorRequest from './modules/mentorRequest';
 import BrowseUsers from './modules/browseUsers';
 import ViewPath from './modules/viewPath';
+import AddCourse from './modules/addCourse';
+import AddSession from './modules/addSession';
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/adminLogin" component={AdminLogin} />
     <Route path="/adminDashboard" component={AdminDashboard}>
       <Route path="/viewFeedback" component={ViewFeedback} />
       <Route path="/addPath" component={AddPath} />
+      <Route path="/addCourse" component={AddCourse} />
+      <Route path="/addSession" component={AddSession} />
       <Route path="/addUser" component={AddUser} />
       <Route path="/ambassadorTask" component={AmbassadorTask} />
       <Route path="/sessionRequest" component={SessionRequest} />
