@@ -11,13 +11,110 @@ class ViewPath extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            options_path: [],
+            courses: [],
+            path: ''
         };
+        this.fetchCourses = this.fetchCourses.bind(this);
     }
     componentDidMount() {
+        var that = this;
         window.jQuery('.collapsible').collapsible();
-        window.jQuery('select').material_select();
+        //window.jQuery('select').material_select();
         window.jQuery('.chips').material_chip();
+        window.jQuery.ajax({
+            url: 'https://0.0.0.0:8000/fetchPath',
+            type: 'GET',
+            crossDomain: true,
+            dataType: 'json',
+            success: function (paths) {
+                console.log(paths);
+                var options =
+                    paths.map((path, index) => (
+                        <option key={index} value={path.pathTitle}>{path.pathTitle}</option>
+                    ))
+                that.setState({ options_path: options });
+                window.jQuery('select#path').material_select();
+                window.jQuery('.select-wrapper').on('change', 'select#path', function () {
+                    var id = window.jQuery(this).attr('id');
+                    var value = window.jQuery(this).val();
+                    that.setState({ 'path': value });
+                    that.fetchCourses(value);
+                    that.setState({ course: value });
+                    console.log(that.state);
+                });
+
+            }
+        })
+    }
+    fetchCourses(value) {
+        var that = this;
+        window.jQuery.ajax({
+            url: 'https://0.0.0.0:8000/' + value + '/fetchCourse',
+            type: 'GET',
+            crossDomain: true,
+            dataType: 'json',
+            success: function (courses) {
+                console.log(courses);
+                var course_list =
+                    courses.map((course, index) => (
+                        <li>
+                            <div className="collapsible-header"><i className="material-icons">filter_drama</i>{course.courseTitle}</div>
+                            <div className="row collapsible-body">
+                                <div className="row">
+                                        <div className="col s2">
+                                            <b>Description :</b>
+                                        </div>
+                                        <div className="col s10">
+                                            <span>{course.courseDescription}</span>
+                                        </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col s2">
+                                            <b>Duration :</b>
+                                        </div>
+                                        <div className="col s4">
+                                            <span>{course.duration}</span>
+                                        </div>
+                                        <div className="col s2">
+                                            <b>Course Fee :</b>
+                                        </div>
+                                        <div className="col s4">
+                                            <span>{course.courseFee}</span>
+                                        </div>
+                                </div>
+                                <div className="row">
+                                        <div className="col s2">
+                                            <b>Author :</b>
+                                        </div>
+                                        <div className="col s4">
+                                            <span>{course.author}</span>
+                                        </div>
+                                        <div className="col s2">
+                                            <b>Level :</b>
+                                        </div>
+                                        <div className="col s4">
+                                            <span>{course.courseLevel}</span>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    ));
+                that.setState({ courses: course_list });
+                /*
+            that.setState({ options_course: options });
+            window.jQuery('select#course').material_select();
+            window.jQuery('.select-wrapper').on('change', 'select#course', function () {
+                var id = window.jQuery(this).attr('id');
+                var value = window.jQuery(this).val();
+                that.setState({ course: value });
+                console.log(that.state);
+            });
+            */
+            }
+        })
     }
     handleChange(event) {
         this.setState({ value: event.target.value });
@@ -31,37 +128,34 @@ class ViewPath extends React.Component {
                     transitionAppearTimeout={500}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <div className="col s12 m8 offset-m3">
-                        <table className="bordered">
-                            <thead>
-                                <tr>
-                                    <th data-field="id">Logo</th>
-                                    <th data-field="name">Path Name</th>
-                                    <th data-field="price">Path Description</th>
-                                </tr>
-                            </thead>
+                    <div className="row">
+                        <div className="col s12 m8 offset-m3 card-panel">
+                            <div className="row">
+                                <div className="input-field col s12 center">
+                                    <p className="center login-form-text">Choose path to list corresponding courses</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <i className="material-icons prefix">chrome_reader_mode</i>
+                                    <select id="path">
+                                        <option value="">Choose Path</option>
+                                        {this.state.options_path}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col s12 m8 offset-m3">
 
-                            <tbody>
-                                <tr>
-                                    <td><img className="circle" alt="user_pic" src="images/login-logo.jpg"/></td>
-                                    <td>Eclair</td>
-                                    <td>$0.87</td>
-                                </tr>
-                                <tr>
-                                    <td>Alan</td>
-                                    <td>Jellybean</td>
-                                    <td>$3.76</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonathan</td>
-                                    <td>Lollipop</td>
-                                    <td>$7.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <ul className="collapsible popout" data-collapsible="accordion">
+                                {this.state.courses}
+                            </ul>
+                        </div>
                     </div>
                 </ReactCSSTransitionGroup>
-            </div>
+            </div >
         );
     }
 }

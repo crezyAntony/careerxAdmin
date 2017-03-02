@@ -192,8 +192,8 @@ class AddSession extends React.Component {
         }
         const params = {
             'course': document.getElementById('session')[2].value,
-            'startdate': document.getElementById('session')[4].value,
-            'enddate': document.getElementById('session')[10].value,
+            'startdate': document.getElementById('session')[3].value,
+            'enddate': document.getElementById('session')[9].value,
             'roomid': document.getElementById('session')[16].value,
             'sessionstatus': document.getElementById('session')[19].value,
             'mentorid': document.getElementById('session')[20].value
