@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import './index.css';
 import AdminLogin from './modules/adminLogin';
 import AdminDashboard from './modules/adminDashboard';
@@ -14,17 +14,47 @@ import BrowseUsers from './modules/browseUsers';
 import ViewPath from './modules/viewPath';
 import AddCourse from './modules/addCourse';
 import AddSession from './modules/addSession';
+let loggedInState = false;
+function requireAuth(nextState, replace, callback) {
+  fetch("https://0.0.0.0:8000/checkAuth", {
+    method: "GET",
+    //body: loginCreds,
+    credentials: 'include',
+    //headers: headers
+  }).then(result => {
+    if (result.ok) {
+      loggedInState = true;
+    }
+    console.log(loggedInState);
+    if (!loggedInState) {
+      replace({
+        pathname: '/',
+        state: { nextPathname: nextState.location.pathname }
+      })
+    }
+    callback();
+  }).catch(function (error) {
+    console.log('There has been a problem with your fetch operation: ' + error);
+    if (!loggedInState) {
+      replace({
+        pathname: '/',
+        state: { nextPathname: nextState.location.pathname }
+      })
+    }
+    callback(error);
+  });
+}
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/adminLogin" component={AdminLogin} />
-    <Route path="/adminDashboard" component={AdminDashboard}>
+    <Route path="/" component={AdminLogin} />
+    <Route path="/adminDashboard" component={AdminDashboard} onEnter={requireAuth}>
       <Route path="/viewFeedback" component={ViewFeedback} />
       <Route path="/addPath" component={AddPath} />
       <Route path="/addCourse" component={AddCourse} />
       <Route path="/addSession" component={AddSession} />
       <Route path="/addUser" component={AddUser} />
       <Route path="/ambassadorTask" component={AmbassadorTask} />
-      <Route path="/sessionRequest" component={SessionRequest} />
+      <IndexRoute component={SessionRequest} />
       <Route path="/mentorRequest" component={MentorRequest} />
       <Route path="/browseUsers" component={BrowseUsers} />
       <Route path="/viewPath" component={ViewPath} />

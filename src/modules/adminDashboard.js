@@ -2,8 +2,23 @@ import '../App.css';
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
-import { Link } from 'react-router'
+import { browserHistory, Link } from 'react-router'
+
+
 class AdminDashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+  logout() {
+    fetch("https://0.0.0.0:8000/logout", {
+      method: "GET",
+      credentials: 'include'
+    }).then(result => { if (result.ok && result.status === 200) { browserHistory.push('/');  } })
+      .catch(function (error) {
+        console.log('There has been a problem with your fetch operation: ' + error);
+      });
+  }
   render() {
     return (
       <div >
@@ -30,7 +45,7 @@ class AdminDashboard extends Component {
           <li>
             <div className="divider"></div>
           </li>
-          <li className="hoverable"><a className="waves-effect" href="#!"><i className="material-icons prefix">power_settings_new</i>Logout</a></li>
+          <li className="hoverable"><a className="waves-effect" href="#!" onClick={this.logout}><i className="material-icons prefix">power_settings_new</i>Logout</a></li>
         </ul>
         {this.props.children}
       </div>

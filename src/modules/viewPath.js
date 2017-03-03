@@ -63,40 +63,40 @@ class ViewPath extends React.Component {
                             <div className="collapsible-header"><i className="material-icons">filter_drama</i>{course.courseTitle}</div>
                             <div className="row collapsible-body">
                                 <div className="row">
-                                        <div className="col s2">
-                                            <b>Description :</b>
-                                        </div>
-                                        <div className="col s10">
-                                            <span>{course.courseDescription}</span>
-                                        </div>
+                                    <div className="col s2">
+                                        <b>Description :</b>
+                                    </div>
+                                    <div className="col s10">
+                                        <span>{course.courseDescription}</span>
+                                    </div>
                                 </div>
                                 <div className="row">
                                     <div className="col s2">
-                                            <b>Duration :</b>
-                                        </div>
-                                        <div className="col s4">
-                                            <span>{course.duration}</span>
-                                        </div>
-                                        <div className="col s2">
-                                            <b>Course Fee :</b>
-                                        </div>
-                                        <div className="col s4">
-                                            <span>{course.courseFee}</span>
-                                        </div>
+                                        <b>Duration :</b>
+                                    </div>
+                                    <div className="col s4">
+                                        <span>{course.duration}</span>
+                                    </div>
+                                    <div className="col s2">
+                                        <b>Course Fee :</b>
+                                    </div>
+                                    <div className="col s4">
+                                        <span>{course.courseFee}</span>
+                                    </div>
                                 </div>
                                 <div className="row">
-                                        <div className="col s2">
-                                            <b>Author :</b>
-                                        </div>
-                                        <div className="col s4">
-                                            <span>{course.author}</span>
-                                        </div>
-                                        <div className="col s2">
-                                            <b>Level :</b>
-                                        </div>
-                                        <div className="col s4">
-                                            <span>{course.courseLevel}</span>
-                                        </div>
+                                    <div className="col s2">
+                                        <b>Author :</b>
+                                    </div>
+                                    <div className="col s4">
+                                        <span>{course.author}</span>
+                                    </div>
+                                    <div className="col s2">
+                                        <b>Level :</b>
+                                    </div>
+                                    <div className="col s4">
+                                        <span>{course.courseLevel}</span>
+                                    </div>
                                 </div>
 
                             </div>
@@ -155,7 +155,7 @@ class ViewPath extends React.Component {
                         </div>
                     </div>
                 </ReactCSSTransitionGroup>
-            </div >
+            </div>
         );
     }
 }
