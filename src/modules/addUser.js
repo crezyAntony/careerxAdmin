@@ -6,13 +6,13 @@ class AddUser extends React.Component {
         this.userSubmit = this.userSubmit.bind(this);
     }
     componentDidMount() {
-        var that = this;
+   //     var that = this;
         window.jQuery('ul.tabs').tabs();
         window.jQuery('select').material_select();
     }
     userSubmit(e) {
         e.preventDefault();
-        var that = this;
+    //    var that = this;
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
         }

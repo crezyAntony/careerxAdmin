@@ -45,7 +45,7 @@ class AdminDashboard extends Component {
           <li>
             <div className="divider"></div>
           </li>
-          <li className="hoverable"><a className="waves-effect" href="#!" onClick={this.logout}><i className="material-icons prefix">power_settings_new</i>Logout</a></li>
+          <li className="hoverable"><a className="waves-effect" onClick={this.logout}><i className="material-icons prefix">power_settings_new</i>Logout</a></li>
         </ul>
         {this.props.children}
       </div>

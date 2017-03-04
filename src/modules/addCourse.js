@@ -1,10 +1,4 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-//import  $ from 'materialize-css/bin/jquery-2.1.1.min.js';
-//import  'materialize-css/bin/materialize.css';
-//window.jQuery=require('jquery');
-//require('materialize-css/bin/materialize.js');
-import { browserHistory } from "react-router";
 
 
 

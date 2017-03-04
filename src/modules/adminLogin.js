@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 class AdminLogin extends React.Component {
     constructor(props) {
         super(props);

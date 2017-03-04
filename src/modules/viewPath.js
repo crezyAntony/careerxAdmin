@@ -37,7 +37,7 @@ class ViewPath extends React.Component {
                 that.setState({ options_path: options });
                 window.jQuery('select#path').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#path', function () {
-                    var id = window.jQuery(this).attr('id');
+                   // var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     that.setState({ 'path': value });
                     that.fetchCourses(value);

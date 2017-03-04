@@ -1,10 +1,6 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-//import  $ from 'materialize-css/bin/jquery-2.1.1.min.js';
-//import  'materialize-css/bin/materialize.css';
-//window.jQuery=require('jquery');
-//require('materialize-css/bin/materialize.js');
-import { browserHistory } from "react-router";
+//import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+//import { browserHistory } from "react-router";
 
 
 
@@ -45,7 +41,7 @@ class AddSession extends React.Component {
                 that.setState({ options_course: options });
                 window.jQuery('select#course').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#course', function () {
-                    var id = window.jQuery(this).attr('id');
+                  //  var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     that.setState({ course: value });
                     console.log(that.state);
@@ -69,7 +65,7 @@ class AddSession extends React.Component {
                 that.setState({ options_room: resultrooms });
                 window.jQuery('select#room').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#room', function () {
-                    var id = window.jQuery(this).attr('id');
+                    //var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     //set course in state
                     that.setState({ room: value });
@@ -94,7 +90,7 @@ class AddSession extends React.Component {
                 that.setState({ options_mentors: resultmentors });
                 window.jQuery('select#room').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#mentor_select', function () {
-                    var id = window.jQuery(this).attr('id');
+                 //   var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     //set course in state
                     that.setState({ mentor: value });
@@ -155,7 +151,7 @@ class AddSession extends React.Component {
                 that.setState({ options_path: options });
                 window.jQuery('select#path').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#path', function () {
-                    var id = window.jQuery(this).attr('id');
+             //       var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     //if (id == 'path') {
                     //set path in state
@@ -175,7 +171,7 @@ class AddSession extends React.Component {
 
 
         window.jQuery('.select-wrapper').on('change', 'select#location', function () {
-            var id = window.jQuery(this).attr('id');
+          //  var id = window.jQuery(this).attr('id');
             var value = window.jQuery(this).val();
             //set course in state
             that.setState({ location: value });
