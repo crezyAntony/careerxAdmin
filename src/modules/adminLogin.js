@@ -59,23 +59,17 @@ class AdminLogin extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12">
-                                    <i className="material-icons prefix">account_circle</i>
-                                    <input id="username" type="text" />
+                                <div className="input-field col s12 tooltipped" data-position="right" data-delay="50" data-tooltip="Enter your username">
+                                    <i className="material-icons prefix" >account_circle</i>
+                                    <input id="username" type="text" required/>
                                     <label>Username</label>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 tooltipped" data-position="right" data-delay="50" data-tooltip="Enter your password">
                                     <i className="material-icons prefix">lock</i>
-                                    <input id="password" type="password" />
+                                    <input id="password" type="password" required />
                                     <label>Password</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s12 login-text">
-                                    <input type="checkbox" id="remember-me" />
-                                    <label>Remember me</label>
                                 </div>
                             </div>
                             <div className="row">

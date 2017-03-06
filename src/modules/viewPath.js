@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import  'materialize-css/bin/materialize.css';
 //window.jQuery=require('jquery');
 //require('materialize-css/bin/materialize.js');
-
+import { browserHistory, Link } from 'react-router'
 
 
 class ViewPath extends React.Component {
@@ -16,6 +16,7 @@ class ViewPath extends React.Component {
             courses: [],
             path: ''
         };
+        this.deleteCourse = this.deleteCourse.bind(this);
         this.fetchCourses = this.fetchCourses.bind(this);
     }
     componentDidMount() {
@@ -48,6 +49,12 @@ class ViewPath extends React.Component {
             }
         })
     }
+    deleteCourse(value){
+        return function(e){
+            console.log(value);
+        }.bind(this);
+        
+    }
     fetchCourses(value) {
         var that = this;
         window.jQuery.ajax({
@@ -59,7 +66,7 @@ class ViewPath extends React.Component {
                 console.log(courses);
                 var course_list =
                     courses.map((course, index) => (
-                        <li>
+                        <li key={index}>
                             <div className="collapsible-header"><i className="material-icons">filter_drama</i>{course.courseTitle}</div>
                             <div className="row collapsible-body">
                                 <div className="row">
@@ -96,6 +103,14 @@ class ViewPath extends React.Component {
                                     </div>
                                     <div className="col s4">
                                         <span>{course.courseLevel}</span>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col s6">
+                                        <button className="btn waves-effect waves-light red" onClick={() => {if(confirm('Delete the item?')) {this.deleteCourse(course.id);}}}><b>Delete This Course</b></button>
+                                    </div>
+                                    <div className="col s6">
+                                        <Link to={`/editCourse/${course.id}`} className="btn waves-effect waves-light green"><b>Edit This Course</b></Link>
                                     </div>
                                 </div>
 

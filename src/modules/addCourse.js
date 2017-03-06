@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { browserHistory, Link } from 'react-router'
 
 
 class AddCourse extends React.Component {
@@ -102,7 +102,7 @@ class AddCourse extends React.Component {
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">title</i>
-                                    <input id="course_title" type="text" className="validate" />
+                                    <input id="course_title" type="text" className="validate" required/>
                                     <label htmlFor="course_title">CourseTitle</label>
                                 </div>
                                 <div className="input-field col s6">
@@ -116,14 +116,14 @@ class AddCourse extends React.Component {
                             <div className="row">
                                 <div className="input-field col s12">
                                     <i className="material-icons prefix">description</i>
-                                    <textarea id="course_description" className="materialize-textarea validate"></textarea>
+                                    <textarea id="course_description" className="materialize-textarea validate"required></textarea>
                                     <label htmlFor="course_description">Description</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">timelapse</i>
-                                    <input id="course_duration" type="number" className="validate" />
+                                    <input id="course_duration" type="number" className="validate" required/>
                                     <label htmlFor="course_duration">Duration in number of sessions</label>
                                 </div>
                                 <div className="input-field col s6">
@@ -135,14 +135,14 @@ class AddCourse extends React.Component {
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
+                                    <select value={this.state.value} onChange={this.handleChange} required>
                                         <option value="">Choose Author</option>
                                         {this.state.resultauthors}
                                     </select>
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange}>
+                                    <select value={this.state.value} onChange={this.handleChange} required>
                                         <option value="">Choose Level</option>
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>

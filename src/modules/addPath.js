@@ -31,7 +31,6 @@ class AddPath extends React.Component {
         const params = {
             'title': document.getElementById('path')[0].value,
             'description': document.getElementById('path')[1].value,
-            'url': document.getElementById('path')[3].value
         }
         const searchParams = Object.keys(params).map((key) => {
             return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
@@ -45,7 +44,6 @@ class AddPath extends React.Component {
                 window.Materialize.toast(status, 3000);
                 document.getElementById('path')[0].value = "";
                 document.getElementById('path')[1].value = "";
-                document.getElementById('path')[3].value = "";
                 that.forceUpdate();
                 console.log("hello");
             })
@@ -66,28 +64,17 @@ class AddPath extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 ">
                                     <i className="material-icons prefix">title</i>
-                                    <input id="path_title" type="text" className="validate" />
+                                    <input id="path_title" type="text" className="validate" required />
                                     <label htmlFor="path_title">Path Title</label>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 ">
                                     <i className="material-icons prefix">description</i>
-                                    <textarea id="pathDescription" className="materialize-textarea validate"></textarea>
+                                    <textarea id="pathDescription" className="materialize-textarea validate" required></textarea>
                                     <label htmlFor="pathDescription">Description</label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="file-field input-field col s6">
-                                    <div className="btn red lighten-2">
-                                        <i className="material-icons">file_upload</i>
-                                        <input type="file" accept=".png, .jpg, .jpeg" />
-                                    </div>
-                                    <div className="file-path-wrapper">
-                                        <input className="file-path validate" type="text" />
-                                    </div>
                                 </div>
                             </div>
                             <div className="row">

@@ -13,6 +13,7 @@ import MentorRequest from './modules/mentorRequest';
 import BrowseUsers from './modules/browseUsers';
 import ViewPath from './modules/viewPath';
 import AddCourse from './modules/addCourse';
+import EditCourse from './modules/editCourse';
 import AddSession from './modules/addSession';
 let loggedInState = false;
 function requireAuth(nextState, replace, callback) {
@@ -58,6 +59,7 @@ ReactDOM.render(
       <Route path="/mentorRequest" component={MentorRequest} />
       <Route path="/browseUsers" component={BrowseUsers} />
       <Route path="/viewPath" component={ViewPath} />
+      <Route path="/editCourse/:id" component={EditCourse} />
     </Route>
   </Router>,
   document.getElementById('root')

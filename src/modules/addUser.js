@@ -56,24 +56,24 @@ class AddUser extends React.Component {
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">account_circle</i>
-                                    <input id="userfirstname" type="text" />
+                                    <input id="userfirstname" type="text" required/>
                                     <label>First name</label>
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">account_circle</i>
-                                    <input id="userlastname" type="text" />
+                                    <input id="userlastname" type="text" required/>
                                     <label>Last name</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">email</i>
-                                    <input id="useremailid" type="email" />
+                                    <input id="useremailid" type="email" required/>
                                     <label>User Email</label>
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">accessibility</i>
-                                    <select name="role">
+                                    <select name="role"required>
                                         <option value="">Choose User Role</option>
                                         <option value="ambassador">Ambassador</option>
                                         <option value="counsellor">Counsellor</option>
