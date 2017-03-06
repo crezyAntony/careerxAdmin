@@ -14,12 +14,14 @@ class ViewPath extends React.Component {
             value: '',
             options_path: [],
             courses: [],
-            path: ''
+            path: '',
+            flag: true
         };
         this.deleteCourse = this.deleteCourse.bind(this);
         this.fetchCourses = this.fetchCourses.bind(this);
+        this.updateUI = this.updateUI.bind(this);
     }
-    componentDidMount() {
+    updateUI() {
         var that = this;
         window.jQuery('.collapsible').collapsible();
         //window.jQuery('select').material_select();
@@ -38,7 +40,7 @@ class ViewPath extends React.Component {
                 that.setState({ options_path: options });
                 window.jQuery('select#path').material_select();
                 window.jQuery('.select-wrapper').on('change', 'select#path', function () {
-                   // var id = window.jQuery(this).attr('id');
+                    // var id = window.jQuery(this).attr('id');
                     var value = window.jQuery(this).val();
                     that.setState({ 'path': value });
                     that.fetchCourses(value);
@@ -49,11 +51,31 @@ class ViewPath extends React.Component {
             }
         })
     }
-    deleteCourse(value){
-        return function(e){
-            console.log(value);
-        }.bind(this);
-        
+    componentDidMount() {
+        this.updateUI();
+    }
+   
+    deleteCourse(id) {
+        var that = this;
+        if (window.confirm("Are you sure to delete this course?")) {
+            window.jQuery.ajax({
+                url: 'https://0.0.0.0:8000/deleteCourse/' + id,
+                type: 'GET',
+                dataType: 'json',
+                //crossDomain: true,
+                success: function (result, status) {
+                    window.Materialize.toast(status, 3000);
+                    that.fetchCourses(window.jQuery('select#path').val());
+                },
+                error: function (xhr, status, error) {
+                    if (status == 500) {
+                        window.Materialize.toast('Deletion failed', 3000);
+                    }
+                }
+            })
+        }
+
+
     }
     fetchCourses(value) {
         var that = this;
@@ -107,7 +129,7 @@ class ViewPath extends React.Component {
                                 </div>
                                 <div className="row">
                                     <div className="col s6">
-                                        <button className="btn waves-effect waves-light red" onClick={() => {if(confirm('Delete the item?')) {this.deleteCourse(course.id);}}}><b>Delete This Course</b></button>
+                                        <button className="btn waves-effect waves-light red" onClick={() => that.deleteCourse(course.id)}><b>Delete This Course</b></button>
                                     </div>
                                     <div className="col s6">
                                         <Link to={`/editCourse/${course.id}`} className="btn waves-effect waves-light green"><b>Edit This Course</b></Link>

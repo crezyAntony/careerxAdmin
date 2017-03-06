@@ -135,7 +135,7 @@ class AddCourse extends React.Component {
                             <div className="row">
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
-                                    <select value={this.state.value} onChange={this.handleChange} required>
+                                    <select value={this.state.value} onChange={this.handleChange} >
                                         <option value="">Choose Author</option>
                                         {this.state.resultauthors}
                                     </select>
