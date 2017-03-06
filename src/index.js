@@ -25,6 +25,8 @@ function requireAuth(nextState, replace, callback) {
   }).then(result => {
     if (result.ok) {
       loggedInState = true;
+    } else {
+      loggedInState = false;
     }
     console.log(loggedInState);
     if (!loggedInState) {
@@ -49,17 +51,17 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={AdminLogin} />
     <Route path="/adminDashboard" component={AdminDashboard} onEnter={requireAuth}>
-      <Route path="/viewFeedback" component={ViewFeedback} />
-      <Route path="/addPath" component={AddPath} />
-      <Route path="/addCourse" component={AddCourse} />
-      <Route path="/addSession" component={AddSession} />
-      <Route path="/addUser" component={AddUser} />
-      <Route path="/ambassadorTask" component={AmbassadorTask} />
-      <IndexRoute component={SessionRequest} />
-      <Route path="/mentorRequest" component={MentorRequest} />
-      <Route path="/browseUsers" component={BrowseUsers} />
-      <Route path="/viewPath" component={ViewPath} />
-      <Route path="/editCourse/:id" component={EditCourse} />
+      <Route path="/viewFeedback" component={ViewFeedback} onEnter={requireAuth} />
+      <Route path="/addPath" component={AddPath} onEnter={requireAuth} />
+      <Route path="/addCourse" component={AddCourse} onEnter={requireAuth} />
+      <Route path="/addSession" component={AddSession} onEnter={requireAuth} />
+      <Route path="/addUser" component={AddUser} onEnter={requireAuth} />
+      <Route path="/ambassadorTask" component={AmbassadorTask} onEnter={requireAuth} />
+      <IndexRoute component={SessionRequest} onEnter={requireAuth} />
+      <Route path="/mentorRequest" component={MentorRequest} onEnter={requireAuth} />
+      <Route path="/browseUsers" component={BrowseUsers} onEnter={requireAuth} />
+      <Route path="/viewPath" component={ViewPath} onEnter={requireAuth} />
+      <Route path="/editCourse/:id" component={EditCourse} onEnter={requireAuth}  />
     </Route>
   </Router>,
   document.getElementById('root')
