@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import  'materialize-css/bin/materialize.css';
 //window.jQuery=require('jquery');
 //require('materialize-css/bin/materialize.js');
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 
 
 class ViewPath extends React.Component {
@@ -54,7 +54,7 @@ class ViewPath extends React.Component {
     componentDidMount() {
         this.updateUI();
     }
-   
+
     deleteCourse(id) {
         var that = this;
         if (window.confirm("Are you sure to delete this course?")) {
@@ -68,7 +68,7 @@ class ViewPath extends React.Component {
                     that.fetchCourses(window.jQuery('select#path').val());
                 },
                 error: function (xhr, status, error) {
-                    if (status == 500) {
+                    if (status === 500) {
                         window.Materialize.toast('Deletion failed', 3000);
                     }
                 }
