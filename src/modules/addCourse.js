@@ -40,7 +40,7 @@ class AddCourse extends React.Component {
                 console.log(authors);
                 var resultauthors =
                     authors.map((author, index) => (
-                        <option key={index} value={author._id}>{author.firstName+" "+author.lastName}</option>
+                        <option key={index} value={author.id}>{author.firstName+" "+author.lastName}</option>
                     ))
                 that.setState({ resultauthors: resultauthors });
                 window.jQuery('select').material_select();
