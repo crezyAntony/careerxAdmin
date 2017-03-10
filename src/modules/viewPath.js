@@ -31,6 +31,9 @@ class ViewPath extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
             success: function (paths) {
                 console.log(paths);
                 var options =
@@ -62,7 +65,10 @@ class ViewPath extends React.Component {
                 url: 'https://0.0.0.0:8000/deleteCourse/' + id,
                 type: 'GET',
                 dataType: 'json',
-                //crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
                 success: function (result, status) {
                     window.Materialize.toast(status, 3000);
                     that.fetchCourses(window.jQuery('select#path').val());
@@ -84,6 +90,9 @@ class ViewPath extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
             success: function (courses) {
                 console.log(courses);
                 var course_list =
@@ -167,7 +176,7 @@ class ViewPath extends React.Component {
                     transitionLeave={false}>
                     <div className="row">
                         <div className="col s12 m8 offset-m3 card-panel">
-                           <div className="row">
+                            <div className="row">
                                 <div className="col s12 center">
                                     <p className="center login-form-text cyan white-text  card-panel "><b>Choose a path</b></p>
                                 </div>

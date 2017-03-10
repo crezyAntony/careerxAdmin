@@ -22,6 +22,9 @@ class EditCourse extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (paths) {
                 console.log(paths);
                 var options =
@@ -37,6 +40,9 @@ class EditCourse extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (authors) {
                 console.log(authors);
                 var resultauthors =
