@@ -29,8 +29,8 @@ class AdminDashboard extends Component {
                 <img src="images/image-hd-23.jpg" alt="profile_pic" />
               </div>
               <a href="#!user"><img className="circle" alt="user_pic" src="images/login-logo.jpg" /></a>
-              <a href="#!name"><span className="blue-text name">Admin</span></a>
-              <a href="#!email"><span className="blue-text email">jdandturk@gmail.com</span></a>
+              <a href="#!name"><span className="white-text bold name">Nithesh Krishnan</span></a>
+              <a href="#!email"><span className="white-text bold email">n@umn.one</span></a>
             </div>
           </li>
           <li className="hoverable"><Link to="/addPath"><i className="material-icons">library_books</i>Add Path</Link></li>

@@ -95,8 +95,8 @@ class AddCourse extends React.Component {
                     <div className="row">
                         <form className="col s6 z-depth-4 card-panel " id="course" action="" onSubmit={this.courseSubmit}>
                             <div className="row">
-                                <div className=" col s12 center">
-                                    <p className="center login-form-text">Add Course</p>
+                                <div className="col s12 center">
+                                    <p className="center login-form-text cyan white-text  card-panel "><b>Add Course</b></p>
                                 </div>
                             </div>
                             <div className="row">
@@ -151,8 +151,8 @@ class AddCourse extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col s3 offset-m8">
-                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add Course
+                                <div className="col m12 center">
+                                    <button className="btn waves-effect waves-light cyan" type="submit" name="action">Add Course
                                     <i className="material-icons right">send</i>
                                     </button>
                                 </div>

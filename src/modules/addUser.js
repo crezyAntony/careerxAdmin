@@ -49,8 +49,8 @@ class AddUser extends React.Component {
                     <div className="col s12 z-depth-4 card-panel">
                         <form className="addUser-form" id="user" action="" onSubmit={this.userSubmit}>
                             <div className="row">
-                                <div className="input-field col s12 center">
-                                    <p className="center login-form-text">Add User</p>
+                                <div className="col s12 center">
+                                    <p className="center login-form-text cyan white-text  card-panel "><b>Add User</b></p>
                                 </div>
                             </div>
                             <div className="row">
@@ -82,8 +82,8 @@ class AddUser extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="input-field col s12 ">
-                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add User</button>
+                                <div className="col s12 center">
+                                    <button className="btn waves-effect waves-light cyan" type="submit" name="action">Add User</button>
                                 </div>
                             </div>
                         </form>

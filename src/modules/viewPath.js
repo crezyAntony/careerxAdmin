@@ -89,8 +89,8 @@ class ViewPath extends React.Component {
                 var course_list =
                     courses.map((course, index) => (
                         <li key={index}>
-                            <div className="collapsible-header"><i className="material-icons">filter_drama</i>{course.courseTitle}</div>
-                            <div className="row collapsible-body">
+                            <div className="collapsible-header grey lighten-2 grey-text text-darken-3"><i className="material-icons">filter_drama</i><b>{course.courseTitle}</b></div>
+                            <div className="row collapsible-body ">
                                 <div className="row">
                                     <div className="col s2">
                                         <b>Description :</b>
@@ -132,7 +132,7 @@ class ViewPath extends React.Component {
                                         <button className="btn waves-effect waves-light red" onClick={() => that.deleteCourse(course.id)}><b>Delete This Course</b></button>
                                     </div>
                                     <div className="col s6">
-                                        <Link to={`/editCourse/${course.id}`} className="btn waves-effect waves-light green"><b>Edit This Course</b></Link>
+                                        <Link to={`/editCourse/${course.id}`} className="btn waves-effect waves-light cyan"><b>Edit This Course</b></Link>
                                     </div>
                                 </div>
 
@@ -167,9 +167,9 @@ class ViewPath extends React.Component {
                     transitionLeave={false}>
                     <div className="row">
                         <div className="col s12 m8 offset-m3 card-panel">
-                            <div className="row">
-                                <div className="input-field col s12 center">
-                                    <p className="center login-form-text">Choose path to list corresponding courses</p>
+                           <div className="row">
+                                <div className="col s12 center">
+                                    <p className="center login-form-text cyan white-text  card-panel "><b>Choose a path</b></p>
                                 </div>
                             </div>
                             <div className="row">

@@ -14,7 +14,7 @@ class AddPath extends React.Component {
         this.pathSubmit = this.pathSubmit.bind(this);
     }
     componentDidMount() {
-       // var that = this;
+        // var that = this;
         window.jQuery('ul.tabs').tabs();
         window.jQuery('select').material_select();
 
@@ -58,10 +58,11 @@ class AddPath extends React.Component {
                 <div className="col s12 offset-m3">
                     <div className="row">
                         <form className="col s6 z-depth-4 card-panel " id="path" action="" onSubmit={this.pathSubmit}>
-                        <div className="row">
-                                <div className="input-field col s12 center">
-                                    <p className="center login-form-text">Add Path</p>
+                            <div className="row">
+                                <div className="col s12 center">
+                                    <p className="center login-form-text cyan white-text  card-panel "><b>Add Path</b></p>
                                 </div>
+
                             </div>
                             <div className="row">
                                 <div className="input-field col s12 ">
@@ -78,8 +79,8 @@ class AddPath extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col s3 offset-m8">
-                                    <button className="btn waves-effect waves-light red lighten-1" type="submit" name="action">Add Path
+                                <div className="col s12 center">
+                                    <button className="btn waves-effect waves-light cyan" type="submit" name="action">Add Path
                                 <i className="material-icons right">send</i>
                                     </button>
                                 </div>
