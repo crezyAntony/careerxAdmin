@@ -32,6 +32,9 @@ class AddSession extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (courses) {
                 console.log(courses);
                 var options =
@@ -56,6 +59,9 @@ class AddSession extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (rooms) {
                 console.log(rooms);
                 var resultrooms =
@@ -81,6 +87,9 @@ class AddSession extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (mentors) {
                 console.log(mentors);
                 var resultmentors =
@@ -142,6 +151,9 @@ class AddSession extends React.Component {
             type: 'GET',
             crossDomain: true,
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },            
             success: function (paths) {
                 console.log(paths);
                 var options =
