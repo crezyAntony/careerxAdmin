@@ -125,9 +125,10 @@ class EditCourse extends React.Component {
                     <div className="row">
                         <form className="col s6 z-depth-4 card-panel " id="course" action="" onSubmit={this.courseSubmit}>
                             <div className="row">
-                                <div className=" col s12 center">
-                                    <p className="center login-form-text">Edit Course</p>
+                                <div className="col s12 center">
+                                    <p className="center login-form-text cyan white-text  card-panel "><b>Edit Course</b></p>
                                 </div>
+
                             </div>
                             <div className="row">
                                 <div className="input-field col s6">
@@ -181,12 +182,12 @@ class EditCourse extends React.Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col s4 offset-s3">
+                                <div className="col s6 center">
                                     <button className="btn waves-effect waves-light red lighten-1" type="button" name="action" onClick={this.goBack}>Cancel
                                     <i className="material-icons right">cancel</i>
                                     </button>
                                 </div>
-                                <div className="col s5">
+                                <div className="col s6 center">
                                     <button className="btn waves-effect waves-light green lighten-1" type="submit" name="action">Update Course
                                     <i className="material-icons right">send</i>
                                     </button>
