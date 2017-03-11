@@ -19,20 +19,24 @@ class AdminLogin extends React.Component {
         const searchParams = Object.keys(params).map((key) => {
             return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
         }).join('&');
-        fetch("https://0.0.0.0:8000/login", {
+        fetch("https://0.0.0.0:8000/loginAdmin", {
             method: "POST",
             body: searchParams,
             headers: headers,
             credentials: 'include'
         }).then(result => {
             if (result.ok) { return result.json(); }
-            if (result.status === 401)
-            { window.Materialize.toast('Username/password incorrect', 3000); }
-            throw new Error('Network response was not ok.');
+            if (result.status === 401) {
+                window.Materialize.toast('Username/password incorrect', 3000);
+            }
+            if (result.status === 403) {
+                window.Materialize.toast('You are not an admin user', 3000);
+            }
+            throw new Error( 'Network response was not ok.');
         })
             .then(user => {
                 console.log('User logged in', user);
-                const {location} = this.props;
+                const { location } = this.props;
                 console.log(location.state);
                 if (location.state && location.state.nextPathname) {
                     this.props.router.replace(location.state.nextPathname)
@@ -61,8 +65,8 @@ class AdminLogin extends React.Component {
                             <div className="row">
                                 <div className="input-field col s12 tooltipped" data-position="right" data-delay="50" data-tooltip="Enter your username">
                                     <i className="material-icons prefix" >account_circle</i>
-                                    <input id="username" type="text" required/>
-                                    <label>Username</label>
+                                    <input id="email" type="text" required />
+                                    <label>email</label>
                                 </div>
                             </div>
                             <div className="row">
