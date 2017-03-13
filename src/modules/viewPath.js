@@ -196,7 +196,7 @@ class ViewPath extends React.Component {
                         <div className="col s12 m8 offset-m3">
 
                             <ul className="collapsible popout" data-collapsible="accordion">
-                                {this.state.courses}
+                                {this.state.courses.length ? this.state.courses : 'Nothing to show' }
                             </ul>
                         </div>
                     </div>

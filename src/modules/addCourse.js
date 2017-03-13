@@ -135,7 +135,7 @@ class AddCourse extends React.Component {
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">attach_money</i>
-                                    <input id="course_fee" type="text" className="validate" />
+                                    <input id="course_fee" type="number" className="validate" />
                                     <label htmlFor="course_fee">Fees for the Course</label>
                                 </div>
                             </div>

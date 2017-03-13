@@ -75,10 +75,11 @@ class SessionRequest extends React.Component {
                     withCredentials: true
                 },
                 success: function (requests) {
+                    console.log(requests);
                     var request_list =
                         requests.map((request, index) => (
                             <tr >
-                                <td>{request.careerxmember.emailId}</td>
+                                <td>{request.userId}</td>
                                 <td><a className="waves-effect waves-light" href={"#" + request.courseId}>{request.requestforcourse.courseTitle}</a></td>
                                 <td>{request.requestDate}</td>
                                 <td><div className="row">

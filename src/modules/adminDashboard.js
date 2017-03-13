@@ -37,7 +37,6 @@ class AdminDashboard extends Component {
           <li className="hoverable"><Link to="/addCourse"><i className="material-icons">library_books</i>Add Course</Link></li>
           <li className="hoverable"><Link to="/adminDashboard"><i className="material-icons">new_releases</i>Session Request</Link></li>
           <li className="hoverable"><Link to="/mentorRequest"><i className="material-icons">new_releases</i>Mentor Request</Link></li>
-          <li className="hoverable"><Link to="/browseUsers"><i className="material-icons">search</i>Browse Users</Link></li>
           <li className="hoverable"><Link to="/addUser"><i className="material-icons">account_box</i>Add User</Link></li>
           <li className="hoverable"><Link to="/viewPath"><i className="material-icons">library_books</i>List Course</Link></li>
 
