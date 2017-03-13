@@ -77,7 +77,8 @@ class AddCourse extends React.Component {
         fetch("https://0.0.0.0:8000/addCourse", {
             method: "POST",
             body: searchParams,
-            headers: headers
+            headers: headers,
+            credentials: 'include'
         }).then(result => { if (result.ok) { return result.text(); } if (result.status === 409) { return result.text() } })
             .then(status => {
                 window.Materialize.toast(status, 3000);
@@ -114,7 +115,7 @@ class AddCourse extends React.Component {
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
                                     <select>
-                                        <option value="">Choose Path</option>
+                                        <option value="" disabled selected>Choose Path</option>
                                         {this.state.options}
                                     </select>
                                 </div>
@@ -142,14 +143,14 @@ class AddCourse extends React.Component {
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
                                     <select value={this.state.value} onChange={this.handleChange} >
-                                        <option value="">Choose Author</option>
+                                        <option value="" disabled selected>Choose Author</option>
                                         {this.state.resultauthors}
                                     </select>
                                 </div>
                                 <div className="input-field col s6">
                                     <i className="material-icons prefix">chrome_reader_mode</i>
                                     <select value={this.state.value} onChange={this.handleChange} required>
-                                        <option value="">Choose Level</option>
+                                        <option value="" disabled selected>Choose Level</option>
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
                                         <option value="Expert">Expert</option>

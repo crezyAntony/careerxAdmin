@@ -17,7 +17,7 @@ import EditCourse from './modules/editCourse';
 import AddSession from './modules/addSession';
 let loggedInState = false;
 function requireAuth(nextState, replace, callback) {
-  fetch("https://0.0.0.0:8000/checkAuth", {
+  fetch("https://0.0.0.0:8000/checkAuth/admin", {
     method: "GET",
     //body: loginCreds,
     credentials: 'include',

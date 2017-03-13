@@ -28,7 +28,8 @@ class AddUser extends React.Component {
         fetch("https://0.0.0.0:8000/addUser", {
             method: "POST",
             body: searchParams,
-            headers: headers
+            headers: headers,
+            credentials: 'include'
         }).then(result => { if (result.ok) { return result.text(); } if (result.status === 409) { return result.text() } })
             .then(status => {
                 window.Materialize.toast(status, 3000);
