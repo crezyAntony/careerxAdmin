@@ -78,8 +78,8 @@ class SessionRequest extends React.Component {
                     var request_list =
                         requests.map((request, index) => (
                             <tr >
-                                <td>{request.userId}</td>
-                                <td><a className="waves-effect waves-light" href={"#" + request.courseId}>{request.courseId}</a></td>
+                                <td>{request.careerxmember.emailId}</td>
+                                <td><a className="waves-effect waves-light" href={"#" + request.courseId}>{request.requestforcourse.courseTitle}</a></td>
                                 <td>{request.requestDate}</td>
                                 <td><div className="row">
                                     <div className="col s6 center">
